@@ -3,11 +3,12 @@ import time
 from slackclient import SlackClient
 
 # starterbot's ID as an environment variable, comes from print_bot_id.py
+# Make sure you have run `export BOT_ID='....'` with the output of print_bot_id.py
 BOT_ID = os.environ.get("BOT_ID")
 
 # constants
 AT_BOT = "<@" + BOT_ID + ">"
-BOTNAME = "scotttest"
+BOTNAME = "YOURBOT_HERE"
 EXAMPLE_COMMAND = "do"
 
 # instantiate Slack client
