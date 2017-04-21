@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import requests
 
 app = Flask(__name__)
@@ -6,20 +6,24 @@ app = Flask(__name__)
 
 # Example of dict format sent by slack:
 # Use this info if you want to do fancier stuff!
-# {token=gIkuvaNzQIHg97ATvDxqgjtO
-# team_id=T0001
-# team_domain=example
-# channel_id=C2147483705
-# channel_name=test
-# user_id=U2147483697
-# user_name=Steve
-# command=/weather
-# text=94070
-# response_url=https://hooks.slack.com/commands/1234/5678}
 
+# request.form
+# ImmutableMultiDict([
+#     ('user_id', u'UAAAAAAAA'),
+#     ('response_url', u'https://hooks.slack.com/commands/AAAAA9BR3/AAAAAA369701/5AAAAAAApWyijzLi0eRmlAiW'),
+#     ('text', u'@scott hey'),
+#     ('token', u'IAAAAAAAAAAAATJdVv4e6r92'),
+#     ('channel_id', u'CAAAAAAA0'),
+#     ('team_id', u'TAAAAAAR3'),
+#     ('command', u'/robot'),
+#     ('team_domain', u'funteam'),
+#     ('user_name', u'scott'),
+#     ('channel_name', u'bot-test')]
+# )
 
 @app.route("/slack", methods=["POST"], strict_slashes=False)
 def hello():
+    print("Request sent by: %s" % request.form['user_name'])
     url = 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1'
     response = requests.get(url).json()
     try:

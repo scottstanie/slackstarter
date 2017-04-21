@@ -2,7 +2,7 @@ import os
 from slackclient import SlackClient
 
 
-BOT_NAME = 'YOURBOT_HERE'
+BOT_NAME = 'scotttest'
 
 # Make sure you have run `export SLACK_BOT_TOKEN='xoxb-....'` with your token
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
